@@ -1,0 +1,60 @@
+<ul class="tabs">
+    <li data-index="1" class="active">TRESSAGE</li>   
+    <li data-index="2">TISSAGE</li>
+    <li data-index="3">LISSAGE</li>
+    <li data-index="4">COIFFURE D’ÉVÉNEMENT</li>
+    <li data-index="5">NOUVELLE COUPE</li>
+</ul>
+
+<img id="cheveu-ondule" src="http://tonyd59.sg-host.com/wp-content/uploads/2022/08/longcheveuondule.png" />
+<STYLE>
+    .tabs {
+        display:flex;
+        justify-content: center;
+        font-family: 'Urbanist';
+        color: #FEFAE2;
+        cursor: pointer;
+    }
+    .tabs li.active { 
+        font-weight:600;
+    }
+    .tabs li {
+        margin:10px;
+        list-style-type: none;
+    }
+    
+.tabs .active {
+    position: relative;
+}
+#cheveu-ondule {
+    display:none;
+    width:100%;
+    height:10px;
+    position: relative;
+    left: 3px;
+    object-fit: cover;
+    transform: rotate(-0.8deg);
+}
+</STYLE>
+<script>
+    jQuery(document).ready(() => {
+        let cheveu = jQuery('#cheveu-ondule')
+        let lis = jQuery('.tabs li');
+        lis.click((e) => {
+            lis.removeClass('active');
+            let clickedElem = jQuery(e.target);
+            clickedElem.addClass('active');
+            let currentWidth = clickedElem.width();
+            cheveu.css('display', 'block');
+            cheveu.css('width', currentWidth);
+            
+            cheveu.css('object-fit', 'cover');
+            clickedElem.append(cheveu);
+            jQuery('.tab').css('right', '0').css('opacity', '1').animate({"right":'100%', opacity: '0', display:'none'}, 'slow'
+            ).hide(0, () => {
+                
+                jQuery(`#tab-${clickedElem.data('index')}`).show(000).css('right', '-100%').animate({right:'0', opacity: 1}, {queue:false})
+            });
+        });
+    });
+</script>
